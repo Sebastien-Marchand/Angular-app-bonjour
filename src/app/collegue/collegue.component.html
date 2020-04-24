@@ -40,10 +40,17 @@
 					{{col.email}}
 				</div>
 				<div class="col-8" >
-					<a href="#" (click)= "onClickLinkModifier()">Créer un nouveau collègue</a>
+					<ng-container *ngIf="modeCreation">
+						<a href="#" (click)= "onClickLinkModifier()">Créer un nouveau collègue</a>
+					</ng-container>
 				</div>
 				<div class="col-4" >
-					<button class="btn btn-primary" (click)= "onClickModifier()">modifier</button>
+					<ng-container *ngIf="modeCreation;else elseBlock">
+						<button class="btn btn-primary" (click)= "onClickModifier()">modifier</button>
+					</ng-container>
+					<ng-template #elseBlock>
+						<button class="btn btn-primary" (click)= "onClickValider()">Valider</button>
+					</ng-template>
 				</div>
 			</div>
 		</div>

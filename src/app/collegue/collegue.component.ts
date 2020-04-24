@@ -2,7 +2,8 @@ import { Collegue } from '../models/Collegue';
 import { 
   Component, 
   OnInit, 
-  Input
+  Input,
+  Directive
 } from '@angular/core';
 
 @Component({
@@ -11,11 +12,17 @@ import {
   styleUrls: ['./collegue.component.css']
 })
 export class CollegueComponent implements OnInit {
+	modeCreation:boolean = true;
 	@Input()col:Collegue;
   constructor() { 
   }
   onClickModifier(){
 	console.log("Modification du collègue");
+	this.modeCreation=false;
+  }
+  onClickValider(){
+	console.log("Modification du collègue");
+	this.modeCreation=true;
   }
   onClickLinkModifier(){
 	  console.log("Création d'un nouveau collègue");
