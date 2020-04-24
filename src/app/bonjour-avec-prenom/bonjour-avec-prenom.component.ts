@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { 
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 
 @Component({
   selector: 'app-bonjour-avec-prenom',
@@ -6,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bonjour-avec-prenom.component.css']
 })
 export class BonjourAvecPrenomComponent implements OnInit {
-	prenom:string;
+@Input()prenom:string;
   constructor() {
-	  this.prenom = 'Philippe';
-	  }
+  //plus de valorisation de la propriété du composant
+}
 
   ngOnInit(): void {
   }
