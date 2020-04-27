@@ -1,0 +1,22 @@
+<div class="form-group row">
+  <label for="inputRechercherParNom" class="col-12 col-sm-3 col-form-label">Recherche par nom</label>
+  <div class="col-12 col-sm-5">
+    <input type="text" class="form-control" id="inputRechercherParNom">
+  </div>
+  <div class="col-12 col-sm-4">
+    <button class="btn btn-primary" (click)="search()">Rechercher</button>
+  </div>
+</div>
+
+<div *ngIf="listeMatricules">
+  <ul>
+    <div class="row">
+      <div class="col-12 ">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let m of listeMatricules">{{m}}</li>
+        </ul>
+
+      </div>
+    </div>
+  </ul>
+</div>
