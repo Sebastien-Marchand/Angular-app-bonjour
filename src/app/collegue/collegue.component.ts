@@ -1,4 +1,5 @@
 import { Collegue } from '../models/Collegue';
+import { DataService } from '../services/data.service';
 import { 
   Component, 
   OnInit, 
@@ -13,9 +14,11 @@ import {
 })
 export class CollegueComponent implements OnInit {
 	modeCreation:boolean = true;
-	@Input()col:Collegue;
-  constructor() { 
-  }
+	//@Input()col:Collegue;
+	col:Collegue;
+	
+	  constructor(private dataService: DataService) {
+		}
   onClickModifier(){
 	console.log("Modification du collègue");
 	this.modeCreation=false;
@@ -28,6 +31,7 @@ export class CollegueComponent implements OnInit {
 	  console.log("Création d'un nouveau collègue");
   }
   ngOnInit(): void {
+	      this.col = this.dataService.recupererCollegueCourant();
   }
 
 }
