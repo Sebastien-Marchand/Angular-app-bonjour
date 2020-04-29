@@ -15,25 +15,29 @@ import {
 })
 export class CollegueComponent implements OnInit, OnDestroy {
 	modeCreation:boolean = true;
-	//@Input()col:Collegue;
-	col:Collegue;
+	@Input()col:Collegue = new Collegue('', '', '', '', new Date(), '');;
+	//col:Collegue;
 	
 	  constructor(private dataService: DataService) {
 		}
   onClickModifier(){
-	console.log("Modification du collègue");
-	this.modeCreation=false;
+    console.log("Modification du collègue");
+    this.modeCreation=false;
   }
   onClickValider(){
-	console.log("Modification du collègue");
-	this.modeCreation=true;
+    console.log("Modification du collègue");
+    this.modeCreation=true;
   }
   onClickLinkModifier(){
 	  console.log("Création d'un nouveau collègue");
   }
   ngOnInit(): void {
-	this.dataService.dataObservableCollegue().subscribe(leCollegue =>{ this.col = leCollegue});
+	  this.dataService.dataObservableCollegue().subscribe(leCollegue =>{ this.col = leCollegue});
   }
   ngOnDestroy(): void{};
 
+  newCollegue(){
+    this.dataService.crerCollegue(this.col.nom, this.col.prenom, this.col.email, this.col.dateDeNaissance, this.col.photoUrl)
+    .subscribe();
+  }
 }

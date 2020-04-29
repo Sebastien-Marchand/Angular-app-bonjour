@@ -4,8 +4,17 @@ import {Collegue} from '../models/Collegue';
 import {collegueMock} from '../mock/collegues.mock';
 import{environment}from'../../environments/environment';
 import{HttpClient}from'@angular/common/http';
-import{Observable, Subject, interval}from'rxjs'
+import{Observable, Subject, interval, from}from'rxjs'
 import { tap, map, filter } from 'rxjs/operators';
+import { HttpHeaders } from'@angular/common/http';
+
+// Options de la requête HTTP
+// ici le corps de la requête sera du JSON
+const httpOptions = {
+	headers: new HttpHeaders({
+	  'Content-Type': 'application/json'
+	})
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +36,21 @@ export class DataService {
 	.pipe(
 		tap(collegue => this.observableCollegue.next(collegue))
 	);
+  }
+  crerCollegue(nom:string, prenom:string, email:string, dateDeNaissance:Date, photoUrl:string)
+  {
+	  return this.http
+	  .post(
+		'https://digicapi.herokuapp.com/collegues',
+		{
+			nom,
+			prenom,
+			email,
+			dateDeNaissance,
+			photoUrl
+		},
+		httpOptions
+	  )
   }
   
 }

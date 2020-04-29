@@ -1,10 +1,14 @@
 	<div class="row">
-		<div class="col-3 m-0 p-0">
-			<img src = {{col.photoUrl}} width="220" height="300">
-		</div>
+		<ng-container *ngIf="modeCreation">
+			<div class="col-3 m-0 p-0">
+					<img src = {{col.photoUrl}} width="200" height="300">
+			</div>
+		</ng-container>
+		<ng-template #elseBlock>
+			<img src = https://www.pressesante.com/wp-content/uploads/2019/09/rever-de-tomber-dans-le-vide.jpg width="220" height="300">
+		</ng-template>
 		<div class="col-8" >
 			<div class="row">
-			
 				<div class="col-4" >
 					matricule
 				</div>
@@ -54,4 +58,66 @@
 				</div>
 			</div>
 		</div>
+		<form #etatForm="ngForm">
+			<div class="col-8" >
+				<div class="row">
+					<div class="col-4" >
+						nom
+					</div>
+					<div class="col-8" >
+						<input type="text" class="form-control" name="nom" [(ngModel)]="col.nom" #Nom="ngModel" required>
+						<div *ngIf="Nom.dirty && Nom.invalid">
+							Le nom est requis.
+						</div>
+					</div>
+					
+					<div class="col-4" >
+						prenom
+					</div>
+					<div class="col-8" >
+						<input type="text" class="form-control" name="prenom" [(ngModel)]="col.prenom" #Prenom="ngModel" required>
+						<div *ngIf="Prenom.dirty && Prenom.invalid">
+							Le prenom est requis.
+						</div>
+					</div>
+					
+					<div class="col-4" >
+						dateDeNaissance
+					</div>
+					<div class="col-8" >
+						<input type="text" class="form-control" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" #DateNaissance="ngModel" required>
+						<div *ngIf="DateNaissance.dirty && DateNaissance.invalid">
+							La date de naissance est requis.
+						</div>
+					</div>
+					
+					<div class="col-4" >
+						email
+					</div>
+					<div class="col-8" >
+						<input type="text" class="form-control" name="email" [(ngModel)]="col.email" #Email="ngModel" required>
+						<div *ngIf="Email.dirty && Email.invalid">
+							L'email  est requis.
+						</div>
+					</div>
+
+					<div class="col-4" >
+						PhotoUrl
+					</div>
+					<div class="col-8" >
+						<input type="text" class="form-control" name="photoUrl" [(ngModel)]="col.photoUrl" #PhotoUrl="ngModel" required minlength="7">
+						<div *ngIf="PhotoUrl.dirty && PhotoUrl.invalid">
+							L'adresse de la photo est requis et doit contenir au moins 7 caractères.
+						</div>
+					</div>
+
+					<div class="col-8" >
+
+					</div>
+					<div class="col-4" >
+						<button [disabled]="etatForm.invalid" class="btn btn-primary" (click)= "newCollegue()">Créer</button>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
