@@ -8,6 +8,7 @@ import { BonjourAvecPrenomComponent } from './bonjour-avec-prenom/bonjour-avec-p
 import { CollegueComponent } from './collegue/collegue.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/recherche-collegue-par-nom.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/r
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+	HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

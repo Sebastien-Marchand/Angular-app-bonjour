@@ -3,6 +3,7 @@ import { DataService } from '../services/data.service';
 import { 
   Component, 
   OnInit, 
+  OnDestroy,
   Input,
   Directive
 } from '@angular/core';
@@ -12,7 +13,7 @@ import {
   templateUrl: './collegue.component.html',
   styleUrls: ['./collegue.component.css']
 })
-export class CollegueComponent implements OnInit {
+export class CollegueComponent implements OnInit, OnDestroy {
 	modeCreation:boolean = true;
 	//@Input()col:Collegue;
 	col:Collegue;
@@ -31,7 +32,8 @@ export class CollegueComponent implements OnInit {
 	  console.log("Création d'un nouveau collègue");
   }
   ngOnInit(): void {
-	      this.col = this.dataService.recupererCollegueCourant();
+	this.dataService.dataObservableCollegue().subscribe(leCollegue =>{ this.col = leCollegue});
   }
+  ngOnDestroy(): void{};
 
 }
